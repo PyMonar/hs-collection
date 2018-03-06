@@ -57,4 +57,12 @@
 
 ## 2. 设计
 
+TODO
+
 ## 3. 技术栈
+
+本工程拟全部采用Javascript语言开发。
+
+- DB: MongoDB
+- Server End: Koa.js
+- Front End: Vue.js + ElementUI
