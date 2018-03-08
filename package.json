@@ -1,0 +1,25 @@
+{
+  "name": "hs-collection",
+  "version": "1.0.0",
+  "description": "HearthStone Collection",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PyMonar/hs-collection.git"
+  },
+  "keywords": [
+    "HearthStone"
+  ],
+  "author": "Monar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PyMonar/hs-collection/issues"
+  },
+  "homepage": "https://github.com/PyMonar/hs-collection#readme",
+  "dependencies": {
+    "mongoose": "^5.0.9"
+  }
+}
