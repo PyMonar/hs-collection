@@ -1,5 +1,7 @@
 # HS-Collection
 
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 ## 1. 需求
 
 ### 1.1 概述
