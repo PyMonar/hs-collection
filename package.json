@@ -21,6 +21,6 @@
   "homepage": "https://github.com/PyMonar/hs-collection#readme",
   "dependencies": {
     "koa": "^2.5.0",
-    "mongoose": "^5.0.9"
+    "mongorito": "^3.0.4"
   }
 }
