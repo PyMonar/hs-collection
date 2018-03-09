@@ -4,7 +4,7 @@
   "description": "HearthStone Collection",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "check": "node_modules/.bin/standard --fix"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,8 @@
   "dependencies": {
     "koa": "^2.5.0",
     "mongorito": "^3.0.4"
+  },
+  "devDependencies": {
+    "standard": "^11.0.0"
   }
 }
