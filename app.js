@@ -9,7 +9,7 @@ const cardRoutes = require('./routes/card')
 // open db connection
 db.connect().then(() => {
   console.log('Connect db success!')
-}).catch(err => {
+}).catch(() => {
   db.disconnect()
 })
 
