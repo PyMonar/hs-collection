@@ -4,10 +4,6 @@
 
 const { Model } = require('mongorito')
 
-class Card extends Model {
-  static queryByName (name) {
-    return Card.find({name: name})
-  }
-}
+class Card extends Model {}
 
 module.exports = Card
