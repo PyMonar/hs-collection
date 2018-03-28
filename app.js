@@ -4,6 +4,7 @@ const app = new Koa()
 const Router = require('koa-router')
 const logger = require('koa-logger')
 const static = require('koa-static2')
+const bodyParser = require('koa-bodyparser')
 
 // 引入mongoDB
 const db = require('./db')
@@ -24,6 +25,9 @@ const cardRoutes = require('./routes/card')
 app.use(logger())
 // 使用静态资源访问中间件
 app.use(static('/public', __dirname + '/public'))
+
+// 使用bodyParser
+app.use(bodyParser())
 
 // 加载路由
 router.use('/card', cardRoutes.routes(), cardRoutes.allowedMethods())

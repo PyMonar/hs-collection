@@ -21,6 +21,7 @@
   "homepage": "https://github.com/PyMonar/hs-collection#readme",
   "dependencies": {
     "koa": "^2.5.0",
+    "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.4.0",
     "koa-static2": "^0.1.8",
     "mongorito": "^3.0.4"
