@@ -29,6 +29,23 @@ app.use(logger())
 // 使用静态资源访问中间件
 app.use(asset('/public', path.join(__dirname, '/public')))
 
+// 错误处理中间件
+app.use(async(ctx, next) => {
+  try {
+    ctx.error = (code, message) => {
+      ctx.throw(code || 500, message || '服务器错误')
+    }
+    await next()
+  } catch (e) {
+    let status = e.status || 500
+    let message = e.message || '服务器错误'
+    ctx.body = { 
+      status, 
+      message 
+    }
+  }
+})
+
 // 加载路由
 router.use('/card', cardRoutes.routes(), cardRoutes.allowedMethods())
 router.use('/enum', enumRoutes.routes(), enumRoutes.allowedMethods())

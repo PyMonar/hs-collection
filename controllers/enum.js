@@ -27,6 +27,9 @@ const update = async (ctx, next) => {
   let item = await Enum.findOne({
     '_id': ObjectId(ctx.request.body._id)
   })
+  if (item === null) {
+    ctx.throw(500, '枚举类型不存在!')
+  }
   updateModel(item, ctx.request.body)
   await item.save()
   ctx.body = {
@@ -37,10 +40,12 @@ const update = async (ctx, next) => {
 }
 
 const deleteById = async (ctx, next) => {
-  console.log(ctx.params)
   let item = await Enum.findOne({
     '_id': ObjectId(ctx.params.id)
   })
+  if (item === null) {
+    ctx.throw(500, '枚举类型不存在!')
+  }
   await item.remove()
   ctx.body = {
     message: '删除成功!'
