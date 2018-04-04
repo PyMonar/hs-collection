@@ -58,5 +58,5 @@ router.use('/card', cardRoutes.routes(), cardRoutes.allowedMethods())
 router.use('/enum', enumRoutes.routes(), enumRoutes.allowedMethods())
 app.use(router.routes())
 
-// 启动服务
-app.listen(config.port)
+// 导出Koa app
+module.exports = app
