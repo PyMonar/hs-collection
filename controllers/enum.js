@@ -1,13 +1,15 @@
 const Enum = require('../models/enum')
 const { ObjectId } = require('mongorito')
 const { updateModel } = require('../utils/util')
+const { MESSAGE, STATUS } = require('../utils/message')
 
 const getByType = async (ctx, next) => {
   let enums = await Enum.find({
     type: ctx.params.type
   })
   ctx.body = {
-    message: '获取成功!',
+    status: STATUS.success,
+    message: MESSAGE.success,
     data: enums
   }
   next()
@@ -17,7 +19,8 @@ const add = async (ctx, next) => {
   let item = new Enum(ctx.request.body)
   await item.save()
   ctx.body = {
-    message: '新增成功!',
+    status: STATUS.success,
+    message: MESSAGE.success,
     data: item.get()
   }
   next()
@@ -28,12 +31,13 @@ const update = async (ctx, next) => {
     '_id': ObjectId(ctx.request.body._id)
   })
   if (item === null) {
-    ctx.throw(500, '枚举类型不存在!')
+    ctx.throw(STATUS.notFound, MESSAGE.isNull)
   }
   updateModel(item, ctx.request.body)
   await item.save()
   ctx.body = {
-    message: '更新成功!',
+    status: STATUS.success,
+    message: MESSAGE.success,
     data: item.get()
   }
   next()
@@ -44,11 +48,12 @@ const deleteById = async (ctx, next) => {
     '_id': ObjectId(ctx.params.id)
   })
   if (item === null) {
-    ctx.throw(500, '枚举类型不存在!')
+    ctx.throw(STATUS.notFound, MESSAGE.isNull)
   }
   await item.remove()
   ctx.body = {
-    message: '删除成功!'
+    status: STATUS.success,
+    message: MESSAGE.success
   }
   next()
 }

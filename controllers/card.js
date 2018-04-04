@@ -1,10 +1,12 @@
 const Card = require('../models/card')
 const { ObjectId } = require('mongorito')
+const { MESSAGE, STATUS } = require('../utils/message')
 
 const getAll = async (ctx, next) => {
   let cards = await Card.find()
   ctx.body = {
-    message: '获取成功!',
+    status: STATUS.success,
+    message: MESSAGE.success,
     data: cards
   }
   next()
@@ -15,7 +17,8 @@ const get = async (ctx, next) => {
     '_id': ObjectId(ctx.params.id)
   })
   ctx.body = {
-    message: '获取成功!',
+    status: STATUS.success,
+    message: MESSAGE.success,
     data: card
   }
   next()

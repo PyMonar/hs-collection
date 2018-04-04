@@ -40,8 +40,8 @@ app.use(async(ctx, next) => {
     let status = e.status || 500
     let message = e.message || '服务器错误'
     ctx.body = { 
-      status, 
-      message 
+      status,
+      message
     }
   }
 })
