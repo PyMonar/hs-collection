@@ -1,5 +1,7 @@
+const config = require('./config')
+
 const { Database } = require('mongorito')
-const db = new Database('localhost/hscollection')
+const db = new Database(config.db)
 
 const Card = require('./models/card')
 const Achievement = require('./models/achievement')
