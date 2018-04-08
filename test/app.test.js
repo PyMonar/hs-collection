@@ -17,8 +17,8 @@ describe('#Test hs-collection app', () => {
     process.exit()
   })
 
-  // enum 测试组
-  describe('#Test enum controller', () => {
+  // enum 测试套件
+  describe.skip('#Test enum controller', () => {
     it('#Test GET /enum/:type', (done) => {
       let type = 'EXPANSION'
       let res = request(server)
@@ -96,8 +96,8 @@ describe('#Test hs-collection app', () => {
     })
   })
 
-  // card 测试组
-  // describe('#Test card controller', () => {
+  // card 测试套件
+  describe('#Test card controller', () => {
     
-  // })
+  })
 })
