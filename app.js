@@ -20,9 +20,13 @@ app.use(bodyParser())
 const db = require('./db')
 // 链接数据库
 db.connect().then(() => {
-  console.log(MESSAGE.dbSuccess)
+  if (process.env.NODE_ENV !== 'test') {
+    console.log(MESSAGE.dbSuccess)
+  }
 }).catch(() => {
-  console.log(MESSAGE.dbFailed)
+  if (process.env.NODE_ENV !== 'test') {
+    console.log(MESSAGE.dbFailed)
+  }
   db.disconnect()
 })
 
@@ -31,8 +35,10 @@ const router = new Router()
 const cardRoutes = require('./routes/card')
 const enumRoutes = require('./routes/enum')
 
-// 使用日志中间件
-app.use(logger())
+// 使用日志中间件, 测试环境不使用日志中间件
+if (process.env.NODE_ENV !== 'test') {
+  app.use(logger())
+}
 // 使用静态资源访问中间件
 app.use(asset('/public', path.join(__dirname, config.static)))
 

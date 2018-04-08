@@ -1,10 +1,10 @@
 // app.test.js
 
 const request = require('supertest')
-const app = require('../app')
 const should = require('should')
+const app = require('../app')
 
-describe('#test koa app', () => {
+describe('#Test hs-collection app', () => {
   let server
 
   // 初始化服务
@@ -17,11 +17,39 @@ describe('#test koa app', () => {
     process.exit()
   })
 
-  describe('#test server', () => {
-    it('#test GET /card', async () => {
-      let res = await request(server)
-                  .get('/card')
-                  .expect(200, {"status":200,"message":"操作成功!","data":[{"_id":"5aab7e636b5f0b3c812f0fd4","name":"Angry chicken"}]})
+  // enum 测试组
+  describe('#Test enum controller', () => {
+    it('#Test GET /enum/:type', (done) => {
+      let type = 'EXPANSION'
+      let res = request(server)
+                  .get(`/enum/${type}`)
+                  .set('Accept', 'application/json')
+                  .expect(200)
+                  .end((err, res) => {
+                    if (err) return done(err)
+                    should(res.body).have.property('data')
+                    done()
+                  })
     })
+
+    // it('#Test GET /enum/add', async () => {
+    //   let res = await request(server)
+    //               .get('/card')
+    // })
+
+    // it('#Test GET /enum/update', async () => {
+    //   let res = await request(server)
+    //               .get('/card')
+    // })
+
+    // it('#Test GET /enum/delete/:id', async () => {
+    //   let res = await request(server)
+    //               .get('/card')
+    // })
   })
+
+  // card 测试组
+  // describe('#Test card controller', () => {
+    
+  // })
 })
