@@ -5,7 +5,7 @@ const should = require('should')
 const app = require('../app')
 
 describe('#Test hs-collection app', () => {
-  let server
+  let server, id
 
   // 初始化服务
   before(async () => {
@@ -32,20 +32,54 @@ describe('#Test hs-collection app', () => {
                   })
     })
 
-    // it('#Test GET /enum/add', async () => {
-    //   let res = await request(server)
-    //               .get('/card')
-    // })
+    it('#Test POST /enum/add', (done) => {
+      let item = {
+        key: 'ADD',
+        value: '-1',
+        name: 'ADD',
+        type: 'ADD',
+        comment: 'ADD'
+      }
+      let res = request(server)
+                  .post('/enum/add')
+                  .send(item)
+                  .expect(200)
+                  .end((err, res) => {
+                    if (err) return done(err)
+                    should(res.body.status).equal(200)
+                    id = res.body.data._id
+                    done()
+                  })
+    })
 
-    // it('#Test GET /enum/update', async () => {
-    //   let res = await request(server)
-    //               .get('/card')
-    // })
+    it('#Test POST /enum/update', (done) => {
+      let item = {
+        _id: id,
+        key: 'UPDATE',
+        value: '-1',
+        name: 'UPDATE',
+        type: 'UPDATE',
+        comment: 'UPDATE'
+      }
+      let res = request(server)
+                  .post('/enum/update')
+                  .send(item)
+                  .end((err, res) => {
+                    if (err) return done(err)
+                    should(res.body.status).equal(200)
+                    done()
+                  })
+    })
 
-    // it('#Test GET /enum/delete/:id', async () => {
-    //   let res = await request(server)
-    //               .get('/card')
-    // })
+    it('#Test GET /enum/delete/:id', (done) => {
+      let res = request(server)
+                  .delete(`/enum/delete/${id}`)
+                  .end((err, res) => {
+                    if (err) return done(err)
+                    should(res.body.status).equal(200)
+                    done()
+                  })
+    })
   })
 
   // card 测试组
