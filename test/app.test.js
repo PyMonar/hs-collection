@@ -90,7 +90,7 @@ describe('#Test hs-collection app', () => {
                       console.log(err)
                       return done(err)
                     }
-                    should(res.body.status).equal(200)
+                    should(res.body.status).equal(404)
                     done()
                   })
     })
