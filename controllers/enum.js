@@ -58,9 +58,27 @@ const deleteById = async (ctx, next) => {
   next()
 }
 
+const deleteByType = async (ctx, next) => {
+  let item = await Enum.find({
+    'type': ctx.params.type
+  })
+  if (item.length === 0) {
+    ctx.throw(STATUS.notFound, MESSAGE.isNull)
+  }
+  await Enum.remove({
+    'type': ctx.params.type
+  })
+  ctx.body = {
+    status: STATUS.success,
+    message: MESSAGE.success
+  }
+  next()
+}
+
 module.exports = {
   getByType,
   add,
   update,
-  deleteById
+  deleteById,
+  deleteByType
 }

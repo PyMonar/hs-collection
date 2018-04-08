@@ -71,11 +71,25 @@ describe('#Test hs-collection app', () => {
                   })
     })
 
-    it('#Test GET /enum/delete/:id', (done) => {
+    it('#Test DELETE /enum/delete/:id', (done) => {
       let res = request(server)
                   .delete(`/enum/delete/${id}`)
                   .end((err, res) => {
                     if (err) return done(err)
+                    should(res.body.status).equal(200)
+                    done()
+                  })
+    })
+
+    it('#Test DELETE /enum/delete/:type', (done) => {
+      let type = 'UPDATE'
+      let res = request(server)
+                  .delete(`/enum/deleteByType/${type}`)
+                  .end((err, res) => {
+                    if (err) {
+                      console.log(err)
+                      return done(err)
+                    }
                     should(res.body.status).equal(200)
                     done()
                   })
