@@ -21,15 +21,15 @@ describe('#Test hs-collection app', () => {
   describe.skip('#Test enum controller', () => {
     it('#Test GET /enum/:type', (done) => {
       let type = 'EXPANSION'
-      let res = request(server)
-                  .get(`/enum/${type}`)
-                  .set('Accept', 'application/json')
-                  .expect(200)
-                  .end((err, res) => {
-                    if (err) return done(err)
-                    should(res.body).have.property('data')
-                    done()
-                  })
+      request(server)
+        .get(`/enum/${type}`)
+        .set('Accept', 'application/json')
+        .expect(200)
+        .end((err, res) => {
+          if (err) return done(err)
+          should(res.body).have.property('data')
+          done()
+        })
     })
 
     it('#Test POST /enum/add', (done) => {
@@ -40,16 +40,16 @@ describe('#Test hs-collection app', () => {
         type: 'ADD',
         comment: 'ADD'
       }
-      let res = request(server)
-                  .post('/enum/add')
-                  .send(item)
-                  .expect(200)
-                  .end((err, res) => {
-                    if (err) return done(err)
-                    should(res.body.status).equal(200)
-                    id = res.body.data._id
-                    done()
-                  })
+      request(server)
+        .post('/enum/add')
+        .send(item)
+        .expect(200)
+        .end((err, res) => {
+          if (err) return done(err)
+          should(res.body.status).equal(200)
+          id = res.body.data._id
+          done()
+        })
     })
 
     it('#Test POST /enum/update', (done) => {
@@ -61,43 +61,43 @@ describe('#Test hs-collection app', () => {
         type: 'UPDATE',
         comment: 'UPDATE'
       }
-      let res = request(server)
-                  .post('/enum/update')
-                  .send(item)
-                  .end((err, res) => {
-                    if (err) return done(err)
-                    should(res.body.status).equal(200)
-                    done()
-                  })
+      request(server)
+        .post('/enum/update')
+        .send(item)
+        .end((err, res) => {
+          if (err) return done(err)
+          should(res.body.status).equal(200)
+          done()
+        })
     })
 
     it('#Test DELETE /enum/delete/:id', (done) => {
-      let res = request(server)
-                  .delete(`/enum/delete/${id}`)
-                  .end((err, res) => {
-                    if (err) return done(err)
-                    should(res.body.status).equal(200)
-                    done()
-                  })
+      request(server)
+        .delete(`/enum/delete/${id}`)
+        .end((err, res) => {
+          if (err) return done(err)
+          should(res.body.status).equal(200)
+          done()
+        })
     })
 
     it('#Test DELETE /enum/delete/:type', (done) => {
       let type = 'UPDATE'
-      let res = request(server)
-                  .delete(`/enum/deleteByType/${type}`)
-                  .end((err, res) => {
-                    if (err) {
-                      console.log(err)
-                      return done(err)
-                    }
-                    should(res.body.status).equal(404)
-                    done()
-                  })
+      request(server)
+        .delete(`/enum/deleteByType/${type}`)
+        .end((err, res) => {
+          if (err) {
+            console.log(err)
+            return done(err)
+          }
+          should(res.body.status).equal(404)
+          done()
+        })
     })
   })
 
   // card 测试套件
   describe('#Test card controller', () => {
-    
+
   })
 })

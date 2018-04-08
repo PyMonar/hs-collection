@@ -34,5 +34,8 @@
     "should": "^13.2.1",
     "standard": "^11.0.0",
     "supertest": "^3.0.0"
+  },
+  "standard": {
+    "globals": [ "describe", "it", "before", "after"]
   }
 }

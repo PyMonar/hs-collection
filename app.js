@@ -43,7 +43,7 @@ if (process.env.NODE_ENV !== 'test') {
 app.use(asset('/public', path.join(__dirname, config.static)))
 
 // 错误处理中间件
-app.use(async(ctx, next) => {
+app.use(async (ctx, next) => {
   try {
     ctx.error = (code, message) => {
       ctx.throw(code || STATUS.error, message || MESSAGE.error)
@@ -52,7 +52,7 @@ app.use(async(ctx, next) => {
   } catch (e) {
     let status = e.status || STATUS.error
     let message = e.message || MESSAGE.error
-    ctx.body = { 
+    ctx.body = {
       status,
       message
     }
