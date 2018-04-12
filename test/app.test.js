@@ -73,7 +73,7 @@ describe('#Test hs-collection app', () => {
 
     it('#Test DELETE /enum/delete/:id', (done) => {
       request(server)
-        .delete(`/enum/delete/${id}`)
+        .del(`/enum/delete/${id}`)
         .end((err, res) => {
           if (err) return done(err)
           should(res.body.status).equal(200)
@@ -84,7 +84,7 @@ describe('#Test hs-collection app', () => {
     it('#Test DELETE /enum/delete/:type', (done) => {
       let type = 'UPDATE'
       request(server)
-        .delete(`/enum/deleteByType/${type}`)
+        .del(`/enum/deleteByType/${type}`)
         .end((err, res) => {
           if (err) {
             console.log(err)
@@ -98,6 +98,31 @@ describe('#Test hs-collection app', () => {
 
   // card 测试套件
   describe('#Test card controller', () => {
+    it('#Test GET /card', (done) => {
+      request(server)
+        .get('/card')
+        .set('Accept', 'application/json')
+        .expect(200)
+        .end((err, res) => {
+          if (err) return done(err)
+          should(res.body).have.property('data')
+          done()
+        })
+    })
 
+    it('#Test DELETE /card/delete', (done) => {
+      let ids = ['5acef8db5b2e0ce662815c00', '5acef8dd5b2e0ce662815c01']
+      request(server)
+        .del('/card/delete')
+        .send({ ids })
+        .end((err, res) => {
+          if (err) {
+            console.log(err)
+            return done(err)
+          }
+          should(res.body.status).equal(200)
+          done()
+        })
+    })
   })
 })
