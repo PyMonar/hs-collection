@@ -4,7 +4,7 @@
   "description": "HearthStone Collection",
   "main": "index.js",
   "scripts": {
-    "check": "node_modules/.bin/standard --fix",
+    "check": "node_modules/.bin/standard",
     "test": "set NODE_ENV=test&& mocha",
     "dev": "supervisor start.js"
   },

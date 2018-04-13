@@ -17,7 +17,7 @@ const STATUS = {
   notFound: 404
 }
 
-module.exports = { 
+module.exports = {
   MESSAGE,
   STATUS
 }
